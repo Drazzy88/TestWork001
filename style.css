@@ -1,0 +1,18 @@
+/*
+Theme Name: storefront-child
+Template: storefront
+*/
+@import url("/storefront/style.css");
+@import url("/storefront/style-rtl.css");
+.weather-widget {
+    border: 1px solid #0066FF;
+    padding: 10px;
+}
+
+.weather-widget h2 {
+    margin-top: 0;
+}
+
+.weather-widget p {
+    margin-bottom: 10px;
+}
