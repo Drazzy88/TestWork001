@@ -155,6 +155,20 @@ class Weather_Widget extends WP_Widget {
     }
 }
 function display_weather_table() {
+     global $wpdb; // добавляем глобальную переменную $wpdb
+    // остальной код функции
+        // Получаем список стран и городов из базы данных
+    $query = "SELECT c.post_title AS city, t.name AS country 
+               FROM $wpdb->posts c 
+               JOIN $wpdb->term_relationships tr ON c.ID = tr.object_id 
+               JOIN $wpdb->terms t ON tr.term_taxonomy_id = t.term_id 
+               WHERE c.post_type = 'cities' 
+               AND t.taxonomy = 'countries' 
+               ORDER BY city ASC, country ASC";
+    $results = $wpdb->get_results($query);
+
+    // Выводим таблицу
+
   ?>
     <form>
         <label for="filter_city">Filter by city:</label>
