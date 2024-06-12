@@ -155,7 +155,7 @@ class Weather_Widget extends WP_Widget {
     }
 }
 function display_weather_table() {
-   ?>
+  ?>
     <form>
         <label for="filter_city">Filter by city:</label>
         <select id="filter_city" name="filter_city">
@@ -174,7 +174,12 @@ function display_weather_table() {
     } else {
         $cities = get_posts( array( 'post_type' => 'cities', 'posts_per_page' => -1 ) );
     }
-   ?>
+    
+    // Сортировка городов по алфавиту
+    usort($cities, function($a, $b) {
+        return strcmp($a->post_title, $b->post_title);
+    });
+  ?>
     <table>
         <thead>
             <tr>
